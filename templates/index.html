@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consulta de Clima</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Consulta de Clima</h1>
+        <form method="POST">
+            <div class="form">
+                <label for="country">País:</label>
+                <select id="country" name="country" required>
+                    <option value="" disabled selected>Selecciona un país</option>
+                    <option value="AR">Argentina</option>
+                    <option value="BR">Brasil</option>
+                    <option value="US">Estados Unidos</option>
+                    <!-- Agrega más países aquí -->
+                </select>
+                <label for="city">Ciudad:</label>
+                <input type="text" id="city" name="city" required>
+                <input type="submit" value="Consultar Clima">
+            </div>
+        </form>
+        {% if weather_data %}
+        <div class="weather-info {{ weather_data['weather_class'] }}">
+            <h2>Información del Clima</h2>
+            <p>Clima: {{ weather_data['weather'] }}</p>
+            <p>Temperatura: {{ weather_data['temp'] }}°C</p>
+            <p>Viento: {{ weather_data['wind_speed'] }} m/s ({{ weather_data['wind_direction'] }}°)</p>
+            <p>Humedad: {{ weather_data['humidity'] }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
